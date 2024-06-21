@@ -1,5 +1,7 @@
 package com.frsystem.com.sisppal.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,21 +25,24 @@ public class Tarea implements Serializable {
     int idTarea;
 
     @Column(name="NOMBRE")
-    String nombre;
+    private String nombre;
 
     @Column(name="DESCRIPCION")
-    String descripcion;
+    private String descripcion;
 
     @Column(name="FECHAINICIO")
-    Date fechaInicio;
+    private Date fechaInicio;
 
     @Column(name="FECHAFIN")
-    Date fechaFin;
+    private Date fechaFin;
 
-    /*@OneToOne
-    @JoinColumn(name = "CODIGO")
-    @Column(name="STATUS")
-    Status status;
+    /*@Column(name="STATUS")
+    private int idStatus;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "codigo")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Status status;
 
     @OneToOne
     @JoinColumn(name = "CODIGO")
